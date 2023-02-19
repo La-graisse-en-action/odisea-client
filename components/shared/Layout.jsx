@@ -1,18 +1,12 @@
-import { styled } from "nativewind"
-import { View, Text } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import Constants from "expo-constants"
+import View from "../../core/StyledView"
 
-const StyledView = styled(View)
-
-export default function Layout({ children }) {
+export default function Layout({ children, customThemes }) {
   return (
-    <StyledView className="flex-1 px-[15px]" style={{ marginTop: Constants.statusBarHeight }}>
+    <View className={`flex-1 px-[15px] pb-[40px] ${customThemes}`} style={{ marginTop: Constants.statusBarHeight }}>
       {children}
-      <Text>
-        This is a test
-      </Text>
       <StatusBar style="auto" />
-    </StyledView>
+    </View>
   )
 }

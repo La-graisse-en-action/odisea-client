@@ -1,12 +1,16 @@
 import { withExpoSnack } from 'nativewind'
-import Layout from './components/shared/Layout'
 import { NativeRouter, Route, Routes } from 'react-router-native'
+import WelcomePage from './pages/main'
+import LoginPage from './pages/login';
+import RegisterPage from './pages/register';
 
 const App = () => {
   return (
     <NativeRouter>
       <Routes>
-        <Route path="/" element={<Layout />} />
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </NativeRouter>
   );

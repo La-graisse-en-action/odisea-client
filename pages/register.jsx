@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import Layout from '../components/shared/Layout'
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <Layout>
       <View>
-        <Text>Hi login</Text>
+        <Text>Hi register</Text>
       </View>
     </Layout>
   )
