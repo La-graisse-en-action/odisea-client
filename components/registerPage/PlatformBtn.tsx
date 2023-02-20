@@ -11,9 +11,23 @@ export default function PlatformBtn({
 }) {
   return (
     <TouchableWithoutFeedback>
-      <View className="bg-[#1A1A1A] flex flex-row items-center px-[10px] py-[8px] rounded-[10px]">
+      <View
+        className="flex flex-row items-center"
+        style={{
+          backgroundColor: "#1A1A1A",
+          borderRadius: 10,
+          paddingHorizontal: 10,
+          paddingVertical: 8,
+        }}
+      >
         <Icon />
-        <Text className="text-white pl-[10px] font-bold text-[20px]">
+        <Text
+          className="text-white font-bold"
+          style={{
+            paddingLeft: 10,
+            fontSize: 20,
+          }}
+        >
           {label}
         </Text>
       </View>

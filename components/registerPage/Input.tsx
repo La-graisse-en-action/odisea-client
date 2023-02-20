@@ -35,7 +35,11 @@ export default function Input({
         isFocus ? "border-blue-400" : "border-gray-300"
       }`}
     >
-      {InputIcon ? <InputIcon /> : <></>}
+      {InputIcon ? (
+        <InputIcon color={isFocus ? "#38bdf8" : "#e9e9e9"} />
+      ) : (
+        <></>
+      )}
       <StyledTextInput
         value={value}
         onChangeText={setValue}
@@ -45,11 +49,18 @@ export default function Input({
         keyboardType={keyboardType}
         keyboardAppearance={keyboardAppearance}
         autoComplete={autoComplete}
-        className="flex-1 font-semibold text-white h-full w-full bg-transparent ml-2 rounded-r-[30px]"
+        className="flex-1 font-semibold text-white h-full w-full bg-transparent ml-2"
         autoCorrect={false}
         secureTextEntry={autoComplete?.includes("password")}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
+        importantForAutofill="no"
+        style={{
+          borderTopRightRadius: 30,
+          borderBottomRightRadius: 30,
+          backfaceVisibility: "hidden",
+          backgroundColor: "transparent",
+        }}
       />
     </View>
   );

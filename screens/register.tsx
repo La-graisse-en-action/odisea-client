@@ -1,12 +1,17 @@
 import Layout from "../components/shared/Layout";
-import { ImageBackground, SafeAreaView } from "react-native";
+import {
+  Dimensions,
+  ImageBackground,
+  Platform,
+  SafeAreaView,
+} from "react-native";
 import View from "../core/StyledView";
 import Text from "../core/StyledText";
 import ArrowLeft from "../core/icons/ArrowLeft";
 import { useState } from "react";
 import EmailInputIcon from "../core/icons/EmailInputIcon";
 import Input from "../components/registerPage/Input";
-import Spacer from "../core/Spacer";
+import Spacer from "../core/SpacerVertical";
 import UserOutline from "../core/icons/UserOutline";
 import PasswordInputIcon from "../core/icons/PasswordInputIcon";
 import GoogleIcon from "../core/icons/GoogleIcon";
@@ -17,6 +22,7 @@ import ChevronArrowRight from "../core/icons/ChevronArrowRight";
 import Fade from "../core/Transitions/Fade";
 import { Link } from "@react-navigation/native";
 
+const dimensions = Dimensions.get("window");
 export default function RegisterPage() {
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
@@ -26,14 +32,23 @@ export default function RegisterPage() {
   return (
     <ImageBackground
       source={require("../assets/registerPage/bg.png")}
-      resizeMode="center"
+      resizeMode="cover"
       style={{
         flex: 1,
         justifyContent: "space-between",
+        position: "absolute",
+        width: dimensions.width,
+        height: dimensions.height,
       }}
     >
       <Layout>
-        <View className="flex flex-row items-center justify-start mb-[45px]">
+        <View
+          style={{
+            marginBottom: 45,
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
           <Link
             to={{
               screen: "welcome",
@@ -42,7 +57,7 @@ export default function RegisterPage() {
           >
             <ArrowLeft />
           </Link>
-          <Text className="text-white text-center w-full font-bold text-2xl my-0">
+          <Text className="text-white text-left ml-6 w-full font-bold text-2xl my-0">
             Crear cuenta
           </Text>
         </View>
@@ -93,10 +108,25 @@ export default function RegisterPage() {
             autoComplete="password-new"
           />
         </SafeAreaView>
-        <Text className="text-[#505050] text-[14px] font-bold text-center mt-[40px] mb-[15px]">
-          O registrate con
-        </Text>
-        <View className="flex flex-row items-center justify-center">
+        <View style={{ marginTop: 40, marginBottom: 20 }}>
+          <Text
+            className="font-bold text-center"
+            style={{
+              color: "#505050",
+              fontSize: 16,
+            }}
+          >
+            O registrate con
+          </Text>
+        </View>
+        <View
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        >
           <Fade>
             <PlatformBtn label="Google" Icon={GoogleIcon} />
           </Fade>
@@ -106,23 +136,54 @@ export default function RegisterPage() {
           </Fade>
         </View>
         <View>
-          <Link
-            to={{
-              screen: "login",
-              params: {} as never,
-            }}
+          <Text
+            className="text-center font-semibold flex items-center"
             style={{
+              color: "#505050",
+              fontSize: 16,
               marginTop: 30,
             }}
           >
-            <Text className="text-[#505050] text-center font-semibold text-[16px] flex items-center">
-              Ya tienes una cuenta?{" "}
-              <Text className="text-blue-500 font-bold text-[16px]">Login</Text>
-            </Text>
-          </Link>
+            Ya tienes una cuenta?{" "}
+            <Link
+              to={{
+                screen: "login",
+                params: {} as never,
+              }}
+              style={{
+                marginTop: 30,
+              }}
+            >
+              <Text
+                className="text-blue-500 font-bold"
+                style={{
+                  fontSize: 16,
+                }}
+              >
+                Login
+              </Text>
+            </Link>
+          </Text>
         </View>
-        <View className="flex flex-row justify-end items-center absolute bottom-10 right-[15px] bg-white">
-          <Text className="font-bold text-xl mr-4">Registrarse</Text>
+        <View
+          className="flex flex-row justify-end items-center bg-white w-full"
+          style={{
+            padding: 10,
+            borderRadius: 10,
+            position: "absolute",
+            bottom: 25,
+            right: 15,
+          }}
+        >
+          <Text
+            className="font-bold mr-4"
+            style={{
+              fontSize: Platform.OS === "android" ? 30 : 24,
+              lineHeight: Platform.OS === "android" ? 36 : 22,
+            }}
+          >
+            Registrarse
+          </Text>
           <ChevronArrowRight />
         </View>
       </Layout>

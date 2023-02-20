@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import Constants from "expo-constants";
 import View from "../../core/StyledView";
+import { Platform } from "react-native";
 
 export default function Layout({
   children,
@@ -11,11 +12,18 @@ export default function Layout({
 }) {
   return (
     <View
-      className={`flex-1 px-[15px] pb-[40px] ${customThemes}`}
-      style={{ marginTop: Constants.statusBarHeight }}
+      className={`flex-1 ${customThemes}`}
+      style={{
+        flex: 1,
+        marginTop:
+          Platform.OS === "android"
+            ? Constants.statusBarHeight + 20
+            : Constants.statusBarHeight,
+        paddingHorizontal: 15,
+        paddingBottom: 40,
+      }}
     >
       {children}
-      <StatusBar style="auto" />
     </View>
   );
 }

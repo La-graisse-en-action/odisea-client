@@ -1,37 +1,44 @@
 import { withExpoSnack } from "nativewind";
-import WelcomePage from "./pages/welcome";
-import LoginPage from "./pages/login";
-import RegisterPage from "./pages/register";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { screens } from "./screens";
+import { modals } from "./screens/modals";
 
-const Stack = createNativeStackNavigator();
-
+const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          options={{
+        <Stack.Group
+          screenOptions={{
             headerShown: false,
           }}
-          name="welcome"
-          component={WelcomePage}
-        />
-        <Stack.Screen
-          options={{
-            headerShown: false,
+        >
+          {screens.map((screen) => (
+            <Stack.Screen
+              key={screen.name}
+              options={{
+                headerShown: false,
+              }}
+              name={screen.name}
+              component={screen.component}
+            />
+          ))}
+        </Stack.Group>
+        <Stack.Group
+          screenOptions={{
+            presentation: "modal",
           }}
-          name="login"
-          component={LoginPage}
-        />
-        <Stack.Screen
-          options={{
-            headerShown: false,
-          }}
-          name="register"
-          component={RegisterPage}
-        />
+        >
+          {modals.map((modal) => (
+            <Stack.Screen
+              key={modal.name}
+              name={modal.name}
+              component={modal.component}
+              options={modal.options}
+            />
+          ))}
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
