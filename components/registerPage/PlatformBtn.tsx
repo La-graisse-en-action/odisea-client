@@ -1,8 +1,14 @@
-import { TouchableWithoutFeedback } from 'react-native'
-import View from '../../core/StyledView'
-import Text from '../../core/StyledText'
+import { TouchableWithoutFeedback } from "react-native";
+import View from "../../core/StyledView";
+import Text from "../../core/StyledText";
 
-export default function PlatformBtn({ label, Icon }) {
+export default function PlatformBtn({
+  label,
+  Icon,
+}: {
+  label: string;
+  Icon: any;
+}) {
   return (
     <TouchableWithoutFeedback>
       <View className="bg-[#1A1A1A] flex flex-row items-center px-[10px] py-[8px] rounded-[10px]">
@@ -12,5 +18,5 @@ export default function PlatformBtn({ label, Icon }) {
         </Text>
       </View>
     </TouchableWithoutFeedback>
-  )
+  );
 }

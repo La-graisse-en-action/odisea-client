@@ -1,5 +1,5 @@
-import { View, Text } from 'react-native'
-import Layout from '../components/shared/Layout'
+import { View, Text } from "react-native";
+import Layout from "../components/shared/Layout";
 
 export default function LoginPage() {
   return (
@@ -8,5 +8,5 @@ export default function LoginPage() {
         <Text>Hi login</Text>
       </View>
     </Layout>
-  )
+  );
 }
